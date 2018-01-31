@@ -3,12 +3,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-
+import org.springframework.web.bind.annotation.*;
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
+import java.util.List;
 
 @Controller
 public class HomeController {
@@ -37,6 +35,7 @@ public class HomeController {
         return "redirect:/";
     }
 
+
     @RequestMapping("/detail/{id}")
     public String showAddress(@PathVariable("id") long id, Model model){
         model.addAttribute("person", addressRepository.findOne(id));
@@ -54,4 +53,31 @@ public class HomeController {
         addressRepository.delete(id);
         return "redirect:/";
     }
+
+    @GetMapping("/search")
+    public String getSearch()
+    {
+        return "show";
+    }
+    @PostMapping("/search")
+    public String showSearchResults(HttpServletRequest request, Model model)
+    {
+        //Get the search string from the result form
+        String searchString = request.getParameter("search");
+        model.addAttribute("search",searchString);
+        model.addAttribute("addresses",addressRepository.findAllByFirstNameContainingIgnoreCase(searchString));
+        return "addressbook";
+    }
+
+/*
+    @PostMapping("/search")
+    public String showSearchResults(@RequestParam("searchString") String request,Model model)
+    {
+        //Get the search string from the result form
+        //String searchString = request.getParameter("search");
+        model.addAttribute("search",request);
+        model.addAttribute("addresses",addressRepository.findAllByTitleContainingIgnoreCase(request));
+        return "addressbook";
+    }
+    */
 }

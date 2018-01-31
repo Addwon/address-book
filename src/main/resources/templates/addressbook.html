@@ -5,6 +5,9 @@
     <title>Title</title>
 </head>
 <body>
+
+<div th:if="${search}!=null" th:inline="text">You searched for [[${search}]]</div>
+
 <a href="/add">Add Address</a><br />
 <table>
     <tr>

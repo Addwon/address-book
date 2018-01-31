@@ -5,6 +5,8 @@
     <title>Title</title>
 </head>
 <body>
+
+
 <form action="#"
       th:action="@{/process}"
       th:object="${person}"
@@ -19,7 +21,7 @@
     Address :<input type="text" th:field="*{address}" />
     <span th:if="${#fields.hasErrors('address')}"
           th:errors="*{address}"></span><br />
-    Phone Number :<input type="number" th:field="*{phoneNumber}" />
+    Phone Number :<input type="text" th:field="*{phoneNumber}" />
     <span th:if="${#fields.hasErrors('phoneNumber')}"
           th:errors="*{phoneNumber}"></span><br />
     Email :<input type="text" th:field="*{eMail}" />

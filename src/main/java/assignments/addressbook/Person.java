@@ -1,5 +1,7 @@
 package assignments.addressbook;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -28,7 +30,7 @@ public class Person {
 
     @NotNull
 
-    private long phoneNumber;
+    private String phoneNumber;
 
     @NotNull
     @Size(min=7)
@@ -66,11 +68,11 @@ public class Person {
         this.address = address;
     }
 
-    public long getPhoneNumber() {
+    public String getPhoneNumber() {
         return phoneNumber;
     }
 
-    public void setPhoneNumber(long phoneNumber) {
+    public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 
@@ -81,4 +83,5 @@ public class Person {
     public void seteMail(String eMail) {
         this.eMail = eMail;
     }
+
 }
