@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Title</title>
+</head>
+<body>
+<a href="/">Show All Addresses</a><br />
+First Name :<Span th:text="${person.firstName}"></Span><br />
+Last Name :<Span th:text="${person.lastName}"></Span><br />
+Address :<Span th:text="${person.address}"></Span><br />
+Phone Number :<Span th:text="${person.phoneNumber}"></Span><br />
+Email :<Span th:text="${person.eMail}"></Span><br />
+<a th:href="@{/delete/{id}(id=${person.id})}">Delete this Person</a>
+</body>
+</html>
